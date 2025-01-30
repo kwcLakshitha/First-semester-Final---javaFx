@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="601.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.TeacherReportController">
+   <children>
+      <AnchorPane fx:id="TeaReportPane" prefHeight="600.0" prefWidth="868.0" style="-fx-background-color: #919ba0;">
+         <children>
+            <Label layoutY="1.0" prefHeight="600.0" prefWidth="390.0" style="-fx-background-color: #07202c;" />
+            <TableView fx:id="teaReportTbl" layoutX="11.0" layoutY="12.0" onMouseClicked="#tblClicked" prefHeight="579.0" prefWidth="368.0">
+               <columns>
+                  <TableColumn fx:id="idCol" prefWidth="141.0" text="ID" />
+                  <TableColumn fx:id="nameCol" prefWidth="226.0" text="Name" />
+               </columns>
+            </TableView>
+            <JFXButton fx:id="saveBtn" layoutX="768.0" layoutY="551.0" onAction="#saveBtnClicked" prefHeight="36.0" prefWidth="94.0" text="Save" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="teaIdLbl" alignment="CENTER" layoutX="389.0" layoutY="49.0" prefHeight="46.0" prefWidth="478.0" text="T001">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="reportIdTxt" layoutX="412.0" layoutY="100.0" prefHeight="36.0" prefWidth="230.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <TextArea fx:id="text" layoutX="409.0" layoutY="169.0" prefHeight="375.0" prefWidth="452.0" />
+   </children>
+</AnchorPane>

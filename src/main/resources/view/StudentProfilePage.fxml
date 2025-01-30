@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="studProfilePane" prefHeight="606.0" prefWidth="505.0" style="-fx-background-color: #07202c;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.StudentProfileController">
+   <children>
+      <ImageView fitHeight="206.0" fitWidth="202.0" layoutX="154.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-name-24.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="idTxt" alignment="CENTER" layoutX="189.0" layoutY="37.0" prefHeight="28.0" prefWidth="128.0" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="categaryTxt" layoutX="170.0" layoutY="264.0" prefHeight="28.0" prefWidth="294.0" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="removeBtn" layoutX="408.0" layoutY="561.0" onAction="#removeBtnClicked" prefHeight="41.0" prefWidth="85.0" text="Remove" textFill="#fc2828">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="21.0" layoutY="302.0" prefHeight="34.0" prefWidth="467.0" text="Name : " textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="346.0" prefHeight="34.0" prefWidth="467.0" text="School :" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="390.0" prefHeight="34.0" prefWidth="467.0" text="Address :" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="434.0" prefHeight="34.0" prefWidth="467.0" text="Email :" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="478.0" prefHeight="34.0" prefWidth="467.0" text="Phone :" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="21.0" layoutY="523.0" prefHeight="34.0" prefWidth="467.0" text="Date of birth :" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameTxt" layoutX="170.0" layoutY="302.0" prefHeight="34.0" prefWidth="325.0" textFill="#18a3e8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="schoolTxt" layoutX="170.0" layoutY="346.0" prefHeight="34.0" prefWidth="325.0" textFill="#18a3e8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="addressTxt" layoutX="170.0" layoutY="390.0" prefHeight="34.0" prefWidth="325.0" textFill="#18a3e8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailTxt" layoutX="170.0" layoutY="434.0" prefHeight="34.0" prefWidth="325.0" textFill="#18a3e8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="phoneTxt" layoutX="170.0" layoutY="478.0" prefHeight="34.0" prefWidth="325.0" textFill="#18a3e8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="dobTxt" layoutX="170.0" layoutY="525.0" prefHeight="33.0" prefWidth="325.0" textFill="#18a3e8">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="editeBtn" layoutX="409.0" layoutY="1.0" onAction="#editeBtnClicked" prefHeight="41.0" prefWidth="85.0" text="Edit" textFill="#ad16bc">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="closeBtn" layoutX="-1.0" onAction="#closeBtnClicked" prefHeight="41.0" prefWidth="85.0" text="Close" textFill="#919ba0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" prefHeight="650.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.TeacherController">
+    <children>
+        <BorderPane layoutX="-1.0" layoutY="-6.0" prefHeight="657.0" prefWidth="1009.0">
+            <top>
+                <AnchorPane prefHeight="57.0" prefWidth="1009.0" style="-fx-background-color: #9aa2a5;" BorderPane.alignment="CENTER">
+                    <children>
+                        <JFXButton fx:id="homeBtn" layoutY="6.0" onAction="#homeBtnClicked" prefHeight="52.0" prefWidth="107.0" text="&lt; Home" textFill="#1717174f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </JFXButton>
+                        <Label alignment="CENTER" layoutX="323.0" layoutY="12.0" prefHeight="35.0" prefWidth="364.0" text="Teacher ' s">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <JFXButton fx:id="teaAddBtn" layoutX="914.0" layoutY="6.0" onAction="#teaAddBtnClicked" prefHeight="52.0" prefWidth="100.0" text="+ Add ">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </top>
+            <center>
+                <AnchorPane prefHeight="600.0" prefWidth="1009.0" style="-fx-background-color: #18a3e8;" BorderPane.alignment="CENTER">
+                    <children>
+                        <JFXComboBox layoutX="367.0" layoutY="27.0" prefHeight="24.0" prefWidth="138.0" promptText="ALL" />
+                        <TextField alignment="CENTER" layoutX="82.0" layoutY="27.0" prefHeight="29.0" prefWidth="272.0" promptText="Find teacher">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </TextField>
+                        <AnchorPane fx:id="teaPane" layoutX="505.0" layoutY="5.0" prefHeight="587.0" prefWidth="503.0" style="-fx-background-color: #919ba0;" />
+                  <Label layoutX="9.0" layoutY="68.0" prefHeight="524.0" prefWidth="490.0" style="-fx-background-color: #07202c;" />
+                  <TableView fx:id="teaTbl" layoutX="24.0" layoutY="86.0" onMouseClicked="#tblClicked" prefHeight="491.0" prefWidth="461.0">
+                     <columns>
+                        <TableColumn fx:id="idCol" prefWidth="134.0" text="ID" />
+                        <TableColumn fx:id="nameCol" prefWidth="186.0" text="Name" />
+                        <TableColumn fx:id="cateCol" prefWidth="152.0" text="Categary" />
+                     </columns>
+                  </TableView>
+                  <ImageView fitHeight="30.0" fitWidth="36.0" layoutX="32.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-search-32.png" />
+                     </image>
+                  </ImageView>
+                    </children></AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

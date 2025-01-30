@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="profilePane" prefHeight="606.0" prefWidth="505.0" style="-fx-background-color: #07202c;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.STF_ProfileController">
+   <children>
+      <ImageView fitHeight="447.0" fitWidth="456.0" layoutX="27.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/happy-students-cartoon-t1qujc2axr5nixh5.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

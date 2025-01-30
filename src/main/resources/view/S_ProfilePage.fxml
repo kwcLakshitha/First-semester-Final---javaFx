@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="studProfilePane" prefHeight="606.0" prefWidth="505.0" style="-fx-background-color: #07202c;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.S_ProfileController">
+   <children>
+      <ImageView fitHeight="488.0" fitWidth="494.0" layoutX="12.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/f87517b90bb7748c535bf3d1d75be1d3-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

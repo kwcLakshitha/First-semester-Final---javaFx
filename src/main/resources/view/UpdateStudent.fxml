@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" prefHeight="650.0" prefWidth="1009.0" style="-fx-background-color: #919ba0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.UpdateStudentController">
+    <children>
+        <Label layoutY="164.0" prefHeight="449.0" prefWidth="1012.0" style="-fx-background-color: #07202c;" />
+        <Pane layoutY="-4.0" prefHeight="54.0" prefWidth="1012.0" style="-fx-background-color: #7f8487;">
+            <children>
+                <JFXButton fx:id="backBtn" layoutX="-1.0" layoutY="6.0" onAction="#backBtnClicked" prefHeight="43.0" prefWidth="95.0" text="&lt; Back">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </JFXButton>
+                <Label layoutX="354.0" layoutY="2.0" prefHeight="54.0" prefWidth="300.0" text="Student Update Form">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <JFXButton fx:id="updateBtn" layoutX="814.0" layoutY="591.0" onAction="#updateBtnClicked" prefHeight="43.0" prefWidth="110.0" style="-fx-background-color: #d4ead6;" text="Update" textFill="#15a123">
+            <font>
+                <Font name="System Bold" size="15.0" />
+            </font>
+        </JFXButton>
+        <TextField fx:id="nameTxt" layoutX="367.0" layoutY="267.0" prefHeight="34.0" prefWidth="565.0" promptText="name">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="emailTxt" layoutX="36.0" layoutY="354.0" prefHeight="34.0" prefWidth="565.0" promptText="e - mail">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="addressTxt" layoutX="36.0" layoutY="401.0" prefHeight="34.0" prefWidth="565.0" promptText="address">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font></TextField>
+        <TextField fx:id="phoneNumberTxt" layoutX="36.0" layoutY="449.0" prefHeight="34.0" prefWidth="565.0" promptText="phone number">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font></TextField>
+        <TextField fx:id="schoolTxt" layoutX="36.0" layoutY="496.0" prefHeight="34.0" prefWidth="565.0" promptText="School">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font></TextField>
+        <JFXButton fx:id="uplordBtn" layoutX="59.0" layoutY="301.0" onAction="#uplordBtnClicked" prefHeight="24.0" prefWidth="229.0" style="-fx-background-color: #d4ead6;" text="Uplord" />
+        <TextField fx:id="StudIdTxt" layoutX="367.0" layoutY="219.0" prefHeight="34.0" prefWidth="565.0" promptText="Student id">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </TextField>
+        <ImageView fx:id="studImg" fitHeight="205.0" fitWidth="229.0" layoutX="71.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/icons8-name-24.png" />
+            </image>
+        </ImageView>
+        <DatePicker fx:id="dobTxt" layoutX="36.0" layoutY="557.0" prefHeight="34.0" prefWidth="215.0" promptText="0000/00/00" />
+        <JFXToggleButton fx:id="al_tgl" layoutX="367.0" layoutY="106.0" onAction="#tglClicked" text="A/L" />
+        <JFXToggleButton fx:id="ol_tgl" layoutX="593.0" layoutY="106.0" onAction="#tglClicked" text="O/L" />
+        <JFXToggleButton fx:id="other_tgl" layoutX="814.0" layoutY="106.0" onAction="#tglClicked" text="Other" />
+    </children>
+</AnchorPane>

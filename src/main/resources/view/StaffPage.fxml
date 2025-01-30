@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" prefHeight="650.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.StaffController">
+    <children>
+        <BorderPane layoutX="-1.0" layoutY="-6.0" prefHeight="657.0" prefWidth="1009.0">
+            <top>
+                <AnchorPane prefHeight="57.0" prefWidth="1009.0" style="-fx-background-color: #9aa2a5;" BorderPane.alignment="CENTER">
+                    <children>
+                        <JFXButton fx:id="homeBtn" layoutY="6.0" onAction="#homeBtnClicked" prefHeight="52.0" prefWidth="107.0" text="&lt; Home" textFill="#1717174f">
+                            <font>
+                                <Font name="System Bold" size="15.0" />
+                            </font>
+                        </JFXButton>
+                        <Label alignment="CENTER" layoutX="323.0" layoutY="12.0" prefHeight="35.0" prefWidth="364.0" text="Staff">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <JFXButton fx:id="staffAddBtn" layoutX="914.0" layoutY="6.0" onAction="#staffAddBtnClicked" prefHeight="52.0" prefWidth="100.0" text="+ Add ">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </top>
+            <center>
+                <AnchorPane prefHeight="600.0" prefWidth="1009.0" style="-fx-background-color: #18a3e8;" BorderPane.alignment="CENTER">
+                    <children>
+                        <JFXComboBox layoutX="367.0" layoutY="27.0" prefHeight="24.0" prefWidth="138.0" promptText="ALL" />
+                        <TextField alignment="CENTER" layoutX="70.0" layoutY="27.0" prefHeight="29.0" prefWidth="272.0" promptText="Find member">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </TextField>
+                        <AnchorPane fx:id="staffPane" layoutX="514.0" layoutY="9.0" prefHeight="582.0" prefWidth="493.0" style="-fx-background-color: #919ba0;" />
+                  <Label layoutX="12.0" layoutY="67.0" prefHeight="524.0" prefWidth="491.0" style="-fx-background-color: #07202c;" />
+                  <TableView fx:id="staffTbl" layoutX="24.0" layoutY="88.0" onMouseClicked="#tblClicked" prefHeight="492.0" prefWidth="467.0">
+                     <columns>
+                        <TableColumn fx:id="idCol" prefWidth="108.0" text="ID" />
+                        <TableColumn fx:id="nameCol" prefWidth="215.0" text="Name" />
+                        <TableColumn fx:id="posiCol" prefWidth="165.0" text="position" />
+                     </columns>
+                  </TableView>
+                  <ImageView fitHeight="33.0" fitWidth="38.0" layoutX="24.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8-search-32.png" />
+                     </image>
+                  </ImageView>
+                    </children></AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

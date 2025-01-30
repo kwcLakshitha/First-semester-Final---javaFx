@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchorPane" prefHeight="650.0" prefWidth="1009.0" style="-fx-background-color: #919ba0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.smart_school.controller.LoginController">
+   <children>
+      <Pane layoutX="-8.0" layoutY="227.0" prefHeight="290.0" prefWidth="1021.0" style="-fx-background-color: #18a3e8;" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0">
+         <children>
+            <Pane layoutX="69.0" layoutY="-190.0" prefHeight="581.0" prefWidth="588.0" style="-fx-background-color: #07202c;">
+               <children>
+                  <Label layoutX="35.0" layoutY="134.0" prefHeight="85.0" prefWidth="164.0" text="Login" textFill="#18a3e8">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="userNameTxt" alignment="CENTER" layoutX="35.0" layoutY="268.0" prefHeight="45.0" prefWidth="519.0" promptText="userName">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <JFXButton fx:id="loginBtn" layoutX="35.0" layoutY="496.0" onAction="#loginBtnClicked" prefHeight="45.0" prefWidth="519.0" style="-fx-background-color: #18a3e8;" text="Login">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <PasswordField fx:id="passwordTxt" alignment="CENTER" layoutX="35.0" layoutY="351.0" prefHeight="45.0" prefWidth="519.0" promptText="password**">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <JFXButton fx:id="fPasswordBtn" layoutX="35.0" layoutY="427.0" onAction="#fPasswordBtnClicked" prefHeight="45.0" prefWidth="134.0" text="Forgot password" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+            <JFXButton fx:id="signUpBtn" layoutX="886.0" layoutY="232.0" onAction="#signUpBtnClicked" prefHeight="37.0" prefWidth="115.0" text="Sign Up">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
