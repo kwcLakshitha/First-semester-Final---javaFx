@@ -1,8 +1,7 @@
-package edu.ijse.smart_school.model;
+package edu.ijse.smart_school.dao.impl;
 
+import edu.ijse.smart_school.dao.custom.TeacherDAO;
 import edu.ijse.smart_school.db.DBconnection;
-import edu.ijse.smart_school.dto.StaffDto;
-import edu.ijse.smart_school.dto.StudentDto;
 import edu.ijse.smart_school.dto.TeacherDto;
 
 import java.sql.Connection;
@@ -11,20 +10,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StaffModel {
-    public ArrayList<StaffDto> getAll() throws SQLException, ClassNotFoundException {
+public class TeacherDAOImpl implements TeacherDAO {
 
-        String query = "SELECT * FROM staff";
+    @Override
+    public ArrayList<TeacherDto> getAll() throws SQLException, ClassNotFoundException {
+
+        String query = "SELECT * FROM teachers";
 
         Connection connection = DBconnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        ArrayList<StaffDto> dto = new ArrayList<>();
+        ArrayList<TeacherDto> dto = new ArrayList<>();
 
         while (resultSet.next()) {
 
-            dto.add(new StaffDto(
+            dto.add(new TeacherDto(
 
                     resultSet.getString(1),
                     resultSet.getString(2),
@@ -32,39 +33,41 @@ public class StaffModel {
                     resultSet.getString(4),
                     resultSet.getString(5),
                     resultSet.getString(6),
-                    resultSet.getString(7)
-
+                    resultSet.getString(7),
+                    resultSet.getString(8)
             ));
         }
         return dto;
     }
 
-    public boolean save(StaffDto staffDto) throws SQLException, ClassNotFoundException {
+    @Override
+    public boolean save(TeacherDto teacherDto) throws SQLException, ClassNotFoundException {
 
-        String sql = "INSERT INTO staff VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO teachers VALUES(?,?,?,?,?,?,?,?)";
 
         Connection connection = DBconnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        preparedStatement.setString(1,staffDto.getMemberId());
-        preparedStatement.setString(2,staffDto.getName());
-        preparedStatement.setString(3,staffDto.getAddress());
-        preparedStatement.setString(4,staffDto.getPosition());
-        preparedStatement.setString(5,staffDto.getHire_date());
-        preparedStatement.setString(6,staffDto.getEmail());
-        preparedStatement.setString(7,staffDto.getPhone());
+        preparedStatement.setString(1,teacherDto.getTeacher_id());
+        preparedStatement.setString(2,teacherDto.getName());
+        preparedStatement.setString(3,teacherDto.getAddress());
+        preparedStatement.setString(4,teacherDto.getNic());
+        preparedStatement.setString(5,teacherDto.getCategary());
+        preparedStatement.setString(6,teacherDto.getHire_date());
+        preparedStatement.setString(7,teacherDto.getEmail());
+        preparedStatement.setString(8,teacherDto.getPhone());
 
         int resp = preparedStatement.executeUpdate();
 
         return 0 < resp ;
     }
 
+    @Override
     public ResultSet lordProfile(String id) throws SQLException, ClassNotFoundException {
 
         System.out.println("lordProfile 1");
         System.out.println("lordProfile id : " + id);
 
-        String query = "SELECT * FROM staff WHERE staff_id = ?";
+        String query = "SELECT * FROM teachers WHERE teacher_id = ?";
 
         Connection connection = DBconnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -74,12 +77,14 @@ public class StaffModel {
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
+
         return resultSet;
     }
 
-    public Boolean remove(String id) throws SQLException, ClassNotFoundException {
+    @Override
+    public Boolean removeTeacher(String id) throws SQLException, ClassNotFoundException {
 
-        String sql = "DELETE FROM staff WHERE staff_id = ?";
+        String sql = "DELETE FROM teachers WHERE teacher_id = ?";
 
         Connection connection = DBconnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -90,29 +95,31 @@ public class StaffModel {
         return i > 0;
     }
 
-    public boolean updateStaff(StaffDto staffDto) throws SQLException, ClassNotFoundException {
+    @Override
+    public boolean updateTeacher(TeacherDto teacherDto) throws SQLException, ClassNotFoundException {
 
-        String sql = "UPDATE students SET name = ?, address = ?, position = ?, hire_date = ?, email = ?, phone = ? WHERE staff_id = ?";
+        String sql = "UPDATE teachers SET name = ?, address = ?, nic = ?, categary = ?, hire_date = ?, email = ?, phone = ? WHERE teacher_id = ?";
 
         Connection connection = DBconnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        preparedStatement.setString(7,staffDto.getMemberId());
-        preparedStatement.setString(1,staffDto.getName());
-        preparedStatement.setString(2,staffDto.getAddress());
-        preparedStatement.setString(3,staffDto.getPosition());
-        preparedStatement.setString(4,staffDto.getHire_date());
-        preparedStatement.setString(5,staffDto.getEmail());
-        preparedStatement.setString(6,staffDto.getPhone());
+        preparedStatement.setString(8,teacherDto.getTeacher_id());
+        preparedStatement.setString(1,teacherDto.getName());
+        preparedStatement.setString(2,teacherDto.getAddress());
+        preparedStatement.setString(3,teacherDto.getNic());
+        preparedStatement.setString(4,teacherDto.getCategary());
+        preparedStatement.setString(5,teacherDto.getHire_date());
+        preparedStatement.setString(6,teacherDto.getEmail());
+        preparedStatement.setString(7,teacherDto.getPhone());
 
         int resp = preparedStatement.executeUpdate();
 
         return 0 < resp ;
     }
 
+    @Override
     public String getCount() throws SQLException, ClassNotFoundException {
 
-        String sql = "SELECT COUNT(*) AS total_staff FROM staff";
+        String sql = "SELECT COUNT(*) AS total_teachers FROM teachers";
 
         Connection connection = DBconnection.getInstance().getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql);

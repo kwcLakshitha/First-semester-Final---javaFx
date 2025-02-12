@@ -1,5 +1,6 @@
-package edu.ijse.smart_school.model;
+package edu.ijse.smart_school.dao.impl;
 
+import edu.ijse.smart_school.dao.custom.StudentDAO;
 import edu.ijse.smart_school.db.DBconnection;
 import edu.ijse.smart_school.dto.StudentDto;
 import edu.ijse.smart_school.util.CrudUtil;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StudentModel {
+public class StudentDAOImpl implements StudentDAO {
 
     public static boolean addReport(String Sid, String rep, String s) throws SQLException, ClassNotFoundException {
         System.out.println(Sid+"  "+rep+"  "+s);
@@ -60,6 +61,7 @@ public class StudentModel {
         return resulst;
     }
 
+    @Override
     public ArrayList<StudentDto> getAll() throws SQLException, ClassNotFoundException {
 
         String query = "SELECT * FROM students";
@@ -88,6 +90,7 @@ public class StudentModel {
         return dto;
     }
 
+    @Override
     public boolean save(StudentDto studentDto) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO students VALUES(?,?,?,?,?,?,?,?)";
 
@@ -107,6 +110,7 @@ public class StudentModel {
         return 0 < resp;
     }
 
+    @Override
     public ResultSet lordProfile(String id) throws SQLException, ClassNotFoundException {
 
         System.out.println("lordProfile 1");
@@ -126,6 +130,7 @@ public class StudentModel {
 
     }
 
+    @Override
     public Boolean removeStudent(String id) throws SQLException, ClassNotFoundException {
 
         String sql = "DELETE FROM students WHERE student_id = ?";
@@ -140,6 +145,7 @@ public class StudentModel {
 
     }
 
+    @Override
     public Boolean updateStudent(StudentDto studentDto) throws SQLException, ClassNotFoundException {
 
         String sql = "UPDATE students SET name = ?, categary = ?, date_of_birth = ?, school = ?, address = ?, phone = ?, email = ? WHERE student_id = ?";
@@ -160,6 +166,7 @@ public class StudentModel {
         return 0 < resp;
     }
 
+    @Override
     public String getCount() throws SQLException, ClassNotFoundException {
 
         String sql = "SELECT COUNT(*) AS total_students FROM students";

@@ -1,15 +1,17 @@
-package edu.ijse.smart_school.model;
+package edu.ijse.smart_school.dao.impl;
 
+import edu.ijse.smart_school.dao.custom.SignUpDAO;
 import edu.ijse.smart_school.db.DBconnection;
 import edu.ijse.smart_school.dto.SignUpDto;
-import edu.ijse.smart_school.dto.StaffDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SignUpModel {
+public class SignUpDAOImpl implements SignUpDAO {
+
+    @Override
     public boolean save(SignUpDto signUpDto) throws SQLException, ClassNotFoundException {
 
         String sql = "INSERT INTO signUp VALUES(?,?,?)";
@@ -27,6 +29,7 @@ public class SignUpModel {
 
     }
 
+    @Override
     public String log(String userName) throws SQLException, ClassNotFoundException {
 
         String sql = "SELECT password FROM signUp WHERE user_name = ?";
