@@ -1,10 +1,13 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.TeacherBO;
+import edu.ijse.smart_school.bo.custom.impl.TeacherBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.TeacherDAO;
 import edu.ijse.smart_school.dto.TeacherDto;
 import edu.ijse.smart_school.dto.tm.TeacherTm;
-import edu.ijse.smart_school.model.StudentModel;
-import edu.ijse.smart_school.model.TeacherModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -74,7 +77,8 @@ public class TeacherReportController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        TeacherModel teacherModel = new TeacherModel();
+        //TeacherDAO teacherModel = (TeacherDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.TEACHER);
+        TeacherBO teacherBO = (TeacherBO) BOFactory.getInstance().getBO(BOFactory.BOType.TEACHER);
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -82,7 +86,7 @@ public class TeacherReportController implements Initializable {
 
         ArrayList<TeacherDto> all = null;
         try {
-            all = teacherModel.getAll();
+            all = teacherBO.getAll();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

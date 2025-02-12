@@ -1,8 +1,12 @@
 package edu.ijse.smart_school.controller;
 
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StaffBO;
+import edu.ijse.smart_school.bo.custom.impl.StaffBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.StaffDAO;
 import edu.ijse.smart_school.dto.StaffDto;
 import edu.ijse.smart_school.dto.tm.StaffTm;
-import edu.ijse.smart_school.model.StaffModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,14 +52,16 @@ public class StaffReportController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        StaffModel staffModel = new StaffModel();
+        //StaffDAO staffModel = (StaffDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STAFF);
+
+        StaffBO staffBO = (StaffBO) BOFactory.getInstance().getBO(BOFactory.BOType.STAFF);
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
       //  posiCol.setCellValueFactory(new PropertyValueFactory<>("position"));
 
         try {
-            ArrayList<StaffDto> all = staffModel.getAll();
+            ArrayList<StaffDto> all = staffBO.getAll();
             ObservableList<StaffTm> staffTm = FXCollections.observableArrayList();
 
             for(StaffDto sDto : all) {

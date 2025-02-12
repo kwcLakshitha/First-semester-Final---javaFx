@@ -1,10 +1,13 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.TeacherBO;
+import edu.ijse.smart_school.bo.custom.impl.TeacherBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.TeacherDAO;
 import edu.ijse.smart_school.dto.TeacherDto;
-import edu.ijse.smart_school.dto.tm.StudentTm;
 import edu.ijse.smart_school.dto.tm.TeacherTm;
-import edu.ijse.smart_school.model.TeacherModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,7 +28,9 @@ import java.util.ResourceBundle;
 
 public class TeacherController implements Initializable {
 
-    TeacherModel teacherModel = new TeacherModel();
+    //TeacherDAO teacherModel = (TeacherDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.TEACHER);
+
+    TeacherBO teacherBO = (TeacherBO) BOFactory.getInstance().getBO(BOFactory.BOType.TEACHER);
 
     @FXML
     private TableColumn<TeacherTm, String> cateCol;
@@ -110,7 +115,7 @@ public class TeacherController implements Initializable {
 
         ArrayList<TeacherDto> all = null;
         try {
-            all = teacherModel.getAll();
+            all = teacherBO.getAll();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {

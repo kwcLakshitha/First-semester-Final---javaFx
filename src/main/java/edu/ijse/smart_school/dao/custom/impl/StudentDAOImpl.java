@@ -1,9 +1,9 @@
-package edu.ijse.smart_school.dao.impl;
+package edu.ijse.smart_school.dao.custom.impl;
 
 import edu.ijse.smart_school.dao.custom.StudentDAO;
 import edu.ijse.smart_school.db.DBconnection;
 import edu.ijse.smart_school.dto.StudentDto;
-import edu.ijse.smart_school.util.CrudUtil;
+import edu.ijse.smart_school.dao.util.CrudUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,9 +66,11 @@ public class StudentDAOImpl implements StudentDAO {
 
         String query = "SELECT * FROM students";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+
+        ResultSet resultSet = CrudUtil.execute(query);
 
         ArrayList<StudentDto> dto = new ArrayList<>();
 
@@ -94,20 +96,22 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean save(StudentDto studentDto) throws SQLException, ClassNotFoundException {
         String sql = "INSERT INTO students VALUES(?,?,?,?,?,?,?,?)";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, studentDto.getStudentId());
-        preparedStatement.setString(2, studentDto.getName());
-        preparedStatement.setString(3, studentDto.getCategory());
-        preparedStatement.setString(4, studentDto.getDateOfBirth());
-        preparedStatement.setString(5, studentDto.getSchool());
-        preparedStatement.setString(6, studentDto.getAddress());
-        preparedStatement.setString(7, studentDto.getPhone());
-        preparedStatement.setString(8, studentDto.getEmail());
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setString(1, studentDto.getStudentId());
+//        preparedStatement.setString(2, studentDto.getName());
+//        preparedStatement.setString(3, studentDto.getCategory());
+//        preparedStatement.setString(4, studentDto.getDateOfBirth());
+//        preparedStatement.setString(5, studentDto.getSchool());
+//        preparedStatement.setString(6, studentDto.getAddress());
+//        preparedStatement.setString(7, studentDto.getPhone());
+//        preparedStatement.setString(8, studentDto.getEmail());
+//
+//        int resp = preparedStatement.executeUpdate();
 
-        int resp = preparedStatement.executeUpdate();
-
-        return 0 < resp;
+        return CrudUtil.execute(sql,studentDto.getStudentId(),studentDto.getName(),studentDto.getCategory(),
+                studentDto.getDateOfBirth(),studentDto.getSchool(),studentDto.getAddress(),studentDto.getPhone(),
+                studentDto.getEmail());
     }
 
     @Override
@@ -118,52 +122,56 @@ public class StudentDAOImpl implements StudentDAO {
 
         String query = "SELECT * FROM students WHERE student_id = ?";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, id);
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(query);
+//        preparedStatement.setString(1, id);
+//
+//        System.out.println("lordProfile 2");
+//
+//        ResultSet resultSet = preparedStatement.executeQuery();
 
-        System.out.println("lordProfile 2");
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        return resultSet;
+        return CrudUtil.execute(query,id);
 
     }
 
     @Override
-    public Boolean removeStudent(String id) throws SQLException, ClassNotFoundException {
+    public Boolean remove(String id) throws SQLException, ClassNotFoundException {
 
         String sql = "DELETE FROM students WHERE student_id = ?";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, id);
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setString(1, id);
+//
+//        int i = preparedStatement.executeUpdate();
 
-        int i = preparedStatement.executeUpdate();
-
-        return i > 0;
+        return CrudUtil.execute(sql,id);
 
     }
 
     @Override
-    public Boolean updateStudent(StudentDto studentDto) throws SQLException, ClassNotFoundException {
+    public boolean update(StudentDto studentDto) throws SQLException, ClassNotFoundException {
 
         String sql = "UPDATE students SET name = ?, categary = ?, date_of_birth = ?, school = ?, address = ?, phone = ?, email = ? WHERE student_id = ?";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(8, studentDto.getStudentId());
-        preparedStatement.setString(1, studentDto.getName());
-        preparedStatement.setString(2, studentDto.getCategory());
-        preparedStatement.setString(3, studentDto.getDateOfBirth());
-        preparedStatement.setString(4, studentDto.getSchool());
-        preparedStatement.setString(5, studentDto.getAddress());
-        preparedStatement.setString(6, studentDto.getPhone());
-        preparedStatement.setString(7, studentDto.getEmail());
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setString(8, studentDto.getStudentId());
+//        preparedStatement.setString(1, studentDto.getName());
+//        preparedStatement.setString(2, studentDto.getCategory());
+//        preparedStatement.setString(3, studentDto.getDateOfBirth());
+//        preparedStatement.setString(4, studentDto.getSchool());
+//        preparedStatement.setString(5, studentDto.getAddress());
+//        preparedStatement.setString(6, studentDto.getPhone());
+//        preparedStatement.setString(7, studentDto.getEmail());
+//
+//        int resp = preparedStatement.executeUpdate();
 
-        int resp = preparedStatement.executeUpdate();
+        return CrudUtil.execute(sql,studentDto.getName(),studentDto.getCategory(),studentDto.getDateOfBirth(),
+                studentDto.getSchool(),studentDto.getAddress(),studentDto.getPhone(),studentDto.getEmail(),
+                studentDto.getStudentId());
 
-        return 0 < resp;
+//        return 0 < resp ;
     }
 
     @Override
@@ -171,9 +179,10 @@ public class StudentDAOImpl implements StudentDAO {
 
         String sql = "SELECT COUNT(*) AS total_students FROM students";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery();
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        ResultSet resultSet = CrudUtil.execute(sql);
 
         String count = null;
 

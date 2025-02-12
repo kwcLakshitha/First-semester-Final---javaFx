@@ -1,9 +1,12 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StaffBO;
+import edu.ijse.smart_school.bo.custom.impl.StaffBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.StaffDAO;
 import edu.ijse.smart_school.dto.StaffDto;
-import edu.ijse.smart_school.dto.TeacherDto;
-import edu.ijse.smart_school.model.StaffModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +27,9 @@ import java.util.ResourceBundle;
 
 public class StaffProfileController implements Initializable {
 
-    StaffModel staffModel = new StaffModel();
+//    StaffDAO staffModel = (StaffDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STAFF);
+
+    StaffBO staffBO = (StaffBO) BOFactory.getInstance().getBO(BOFactory.BOType.STAFF);
 
     @FXML
     private Label addressTxt;
@@ -100,7 +105,7 @@ public class StaffProfileController implements Initializable {
 
         try {
 
-            Boolean resp = staffModel.remove(idTxt.getText());
+            Boolean resp = staffBO.remove(idTxt.getText());
             if (resp){
                 new Alert(Alert.AlertType.INFORMATION,"Successfully").show();
             }
@@ -125,7 +130,7 @@ public class StaffProfileController implements Initializable {
 
         try {
 
-            ResultSet resultSet = staffModel.lordProfile(id);
+            ResultSet resultSet = staffBO.lordProfile(id);
             System.out.println(resultSet.toString());
 
 

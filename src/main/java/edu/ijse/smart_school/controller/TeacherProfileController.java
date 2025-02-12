@@ -1,9 +1,12 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
-import edu.ijse.smart_school.dto.StudentDto;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.TeacherBO;
+import edu.ijse.smart_school.bo.custom.impl.TeacherBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.TeacherDAO;
 import edu.ijse.smart_school.dto.TeacherDto;
-import edu.ijse.smart_school.model.TeacherModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +26,9 @@ import java.util.ResourceBundle;
 
 public class TeacherProfileController implements Initializable {
 
-    TeacherModel teacherModel = new TeacherModel();
+    //TeacherDAO teacherModel = (TeacherDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.TEACHER);
+
+    TeacherBO teacherBO = (TeacherBO) BOFactory.getInstance().getBO(BOFactory.BOType.TEACHER);
 
     @FXML
     private Label addressTxt;
@@ -75,7 +80,7 @@ public class TeacherProfileController implements Initializable {
 
         try {
 
-            ResultSet resultSet = teacherModel.lordProfile(id);
+            ResultSet resultSet = teacherBO.lordProfile(id);
             System.out.println(resultSet.toString());
 
 
@@ -145,7 +150,7 @@ public class TeacherProfileController implements Initializable {
 
         try {
 
-            Boolean resp = teacherModel.removeTeacher(idTxt.getText());
+            Boolean resp = teacherBO.remove(idTxt.getText());
             if (resp){
                 new Alert(Alert.AlertType.INFORMATION,"Successfully").show();
             }

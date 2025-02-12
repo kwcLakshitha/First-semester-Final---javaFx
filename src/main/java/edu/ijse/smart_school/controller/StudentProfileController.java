@@ -1,8 +1,12 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StudentBO;
+import edu.ijse.smart_school.bo.custom.impl.StudentBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.StudentDAO;
 import edu.ijse.smart_school.dto.StudentDto;
-import edu.ijse.smart_school.model.StudentModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,9 +26,8 @@ import java.util.ResourceBundle;
 
 public class StudentProfileController implements Initializable{
 
-    StudentModel studentModel = new StudentModel();
- //   StudentController studentController = new StudentController();
-
+    //StudentDAO studentModel = (StudentDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STUDENT);
+    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
 
     @FXML
     private Label addressTxt;
@@ -79,7 +82,7 @@ public class StudentProfileController implements Initializable{
 
         try {
 
-            ResultSet resultSet = studentModel.lordProfile(id);
+            ResultSet resultSet = studentBO.lordProfile(id);
             System.out.println(resultSet.toString());
 
 
@@ -153,7 +156,7 @@ public class StudentProfileController implements Initializable{
 
         try {
 
-            Boolean resp = studentModel.removeStudent(idTxt.getText());
+            Boolean resp = studentBO.remove(idTxt.getText());
 
 
 

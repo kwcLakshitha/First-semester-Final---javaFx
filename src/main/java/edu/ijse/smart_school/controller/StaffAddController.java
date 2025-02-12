@@ -1,8 +1,12 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StaffBO;
+import edu.ijse.smart_school.bo.custom.impl.StaffBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.StaffDAO;
 import edu.ijse.smart_school.dto.StaffDto;
-import edu.ijse.smart_school.model.StaffModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,9 +83,10 @@ public class StaffAddController {
 
         StaffDto staffDto = new StaffDto(id, name, address, position, hireDate, email, phone);
 
-        StaffModel staffModel = new StaffModel();
+        //StaffDAO staffModel = (StaffDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STAFF);
+        StaffBO staffBO = (StaffBO) BOFactory.getInstance().getBO(BOFactory.BOType.STAFF);
         try {
-            boolean save = staffModel.save(staffDto);
+            boolean save = staffBO.save(staffDto);
 
             if (save) {
                 new Alert(Alert.AlertType.INFORMATION, "Successfully save").show();

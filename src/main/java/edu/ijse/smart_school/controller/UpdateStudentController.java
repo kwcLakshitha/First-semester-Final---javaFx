@@ -2,8 +2,12 @@ package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StudentBO;
+import edu.ijse.smart_school.bo.custom.impl.StudentBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.StudentDAO;
 import edu.ijse.smart_school.dto.StudentDto;
-import edu.ijse.smart_school.model.StudentModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -93,9 +97,11 @@ public class UpdateStudentController implements Initializable {
 
         StudentDto studentDto = new StudentDto(id , name , categary , dob , school , address , phone , email);
 
-        StudentModel studentModel = new StudentModel();
+        //StudentDAO studentModel = (StudentDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STUDENT);
+
+        StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
         try {
-            boolean save = studentModel.updateStudent(studentDto);
+            boolean save = studentBO.update(studentDto);
 
             if (save){
                 new Alert(Alert.AlertType.INFORMATION,"Successfully Update").show();

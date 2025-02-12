@@ -1,7 +1,11 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
-import edu.ijse.smart_school.model.SignUpModel;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.SignUpBO;
+import edu.ijse.smart_school.bo.custom.impl.SignUpBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.SignUpDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginController {
@@ -57,9 +60,11 @@ public class LoginController {
 
         }
 
-        SignUpModel signUpModel = new SignUpModel();
+        //SignUpDAO signUp = (SignUpDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.SIGNUP);
+        SignUpBO signUpBO = (SignUpBO) BOFactory.getInstance().getBO(BOFactory.BOType.SIGNUP);
+
         try {
-            String log = signUpModel.log(userName);
+            String log = signUpBO.log(userName);
 
             if (password.equals(log)) {
 

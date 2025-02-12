@@ -1,8 +1,12 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.SignUpBO;
+import edu.ijse.smart_school.bo.custom.impl.SignUpBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.SignUpDAO;
 import edu.ijse.smart_school.dto.SignUpDto;
-import edu.ijse.smart_school.model.SignUpModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,9 +60,11 @@ public class SignUpController {
 
             signUpDto = new SignUpDto(userName,email,password);
 
-            SignUpModel signUpModel = new SignUpModel();
+            //SignUpDAO signUp = (SignUpDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.SIGNUP);
+            SignUpBO signUpBO = (SignUpBO) BOFactory.getInstance().getBO(BOFactory.BOType.SIGNUP);
+
             try {
-                boolean resp = signUpModel.save(signUpDto);
+                boolean resp = signUpBO.save(signUpDto);
 
                 if (resp) {
 

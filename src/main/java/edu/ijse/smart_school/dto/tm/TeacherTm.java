@@ -1,7 +1,7 @@
 package edu.ijse.smart_school.dto.tm;
 
 import edu.ijse.smart_school.db.DBconnection;
-import edu.ijse.smart_school.util.CrudUtil;
+import edu.ijse.smart_school.dao.util.CrudUtil;
 
 import java.sql.Connection;
 import java.sql.SQLException;

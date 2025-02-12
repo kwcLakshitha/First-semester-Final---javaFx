@@ -1,6 +1,7 @@
-package edu.ijse.smart_school.dao.impl;
+package edu.ijse.smart_school.dao.custom.impl;
 
 import edu.ijse.smart_school.dao.custom.StaffDAO;
+import edu.ijse.smart_school.dao.util.CrudUtil;
 import edu.ijse.smart_school.db.DBconnection;
 import edu.ijse.smart_school.dto.StaffDto;
 
@@ -17,9 +18,11 @@ public class StaffDAOImpl implements StaffDAO {
 
         String query = "SELECT * FROM staff";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(query);
+//
+
+        ResultSet resultSet = CrudUtil.execute(query);
 
         ArrayList<StaffDto> dto = new ArrayList<>();
 
@@ -27,13 +30,7 @@ public class StaffDAOImpl implements StaffDAO {
 
             dto.add(new StaffDto(
 
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getString(4),
-                    resultSet.getString(5),
-                    resultSet.getString(6),
-                    resultSet.getString(7)
+                    resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7)
 
             ));
         }
@@ -45,20 +42,20 @@ public class StaffDAOImpl implements StaffDAO {
 
         String sql = "INSERT INTO staff VALUES(?,?,?,?,?,?,?)";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//
+//        preparedStatement.setString(1,staffDto.getMemberId());
+//        preparedStatement.setString(2,staffDto.getName());
+//        preparedStatement.setString(3,staffDto.getAddress());
+//        preparedStatement.setString(4,staffDto.getPosition());
+//        preparedStatement.setString(5,staffDto.getHire_date());
+//        preparedStatement.setString(6,staffDto.getEmail());
+//        preparedStatement.setString(7,staffDto.getPhone());
+//
+//        int resp = preparedStatement.executeUpdate();
 
-        preparedStatement.setString(1,staffDto.getMemberId());
-        preparedStatement.setString(2,staffDto.getName());
-        preparedStatement.setString(3,staffDto.getAddress());
-        preparedStatement.setString(4,staffDto.getPosition());
-        preparedStatement.setString(5,staffDto.getHire_date());
-        preparedStatement.setString(6,staffDto.getEmail());
-        preparedStatement.setString(7,staffDto.getPhone());
-
-        int resp = preparedStatement.executeUpdate();
-
-        return 0 < resp ;
+        return CrudUtil.execute(sql, staffDto.getMemberId(), staffDto.getName(), staffDto.getAddress(), staffDto.getPosition(), staffDto.getHire_date(), staffDto.getEmail(), staffDto.getPhone());
     }
 
     @Override
@@ -69,15 +66,15 @@ public class StaffDAOImpl implements StaffDAO {
 
         String query = "SELECT * FROM staff WHERE staff_id = ?";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1,id);
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(query);
+//        preparedStatement.setString(1,id);
 
         System.out.println("lordProfile 2");
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+//        ResultSet resultSet = preparedStatement.executeQuery();
 
-        return resultSet;
+        return CrudUtil.execute(query, id);
     }
 
     @Override
@@ -85,34 +82,22 @@ public class StaffDAOImpl implements StaffDAO {
 
         String sql = "DELETE FROM staff WHERE staff_id = ?";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,id);
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setString(1,id);
+//
+//        int i = preparedStatement.executeUpdate();
 
-        int i = preparedStatement.executeUpdate();
-
-        return i > 0;
+        return CrudUtil.execute(sql, id);
     }
 
     @Override
-    public boolean updateStaff(StaffDto staffDto) throws SQLException, ClassNotFoundException {
+    public boolean update(StaffDto staffDto) throws SQLException, ClassNotFoundException {
 
         String sql = "UPDATE students SET name = ?, address = ?, position = ?, hire_date = ?, email = ?, phone = ? WHERE staff_id = ?";
+        System.out.println(staffDto.getMemberId());
+        return CrudUtil.execute(sql, staffDto.getName(), staffDto.getAddress(), staffDto.getPosition(), staffDto.getHire_date(), staffDto.getEmail(), staffDto.getPhone(), staffDto.getMemberId());
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        preparedStatement.setString(7,staffDto.getMemberId());
-        preparedStatement.setString(1,staffDto.getName());
-        preparedStatement.setString(2,staffDto.getAddress());
-        preparedStatement.setString(3,staffDto.getPosition());
-        preparedStatement.setString(4,staffDto.getHire_date());
-        preparedStatement.setString(5,staffDto.getEmail());
-        preparedStatement.setString(6,staffDto.getPhone());
-
-        int resp = preparedStatement.executeUpdate();
-
-        return 0 < resp ;
     }
 
     @Override
@@ -120,9 +105,10 @@ public class StaffDAOImpl implements StaffDAO {
 
         String sql = "SELECT COUNT(*) AS total_staff FROM staff";
 
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery();
+//        Connection connection = DBconnection.getInstance().getConnection();
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        ResultSet resultSet = CrudUtil.execute(sql);
 
         String count = null;
 

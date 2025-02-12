@@ -1,9 +1,13 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StudentBO;
+import edu.ijse.smart_school.bo.custom.impl.StudentBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.StudentDAO;
 import edu.ijse.smart_school.dto.StudentDto;
 import edu.ijse.smart_school.dto.tm.StudentTm;
-import edu.ijse.smart_school.model.StudentModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,8 +29,9 @@ import java.util.ResourceBundle;
 
 public class StudentController implements Initializable {
 
-    StudentModel studentModel = new StudentModel();
+//    StudentDAO studentModel = (StudentDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STUDENT);
 
+    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
     @FXML
     private TableColumn<StudentTm, String> cateCol;
 
@@ -112,7 +117,7 @@ public class StudentController implements Initializable {
         cateCol.setCellValueFactory(new PropertyValueFactory<>("categary"));
 
         try {
-            ArrayList<StudentDto> all = studentModel.getAll();
+            ArrayList<StudentDto> all = studentBO.getAll();
             ObservableList<StudentTm> studentTm = FXCollections.observableArrayList();
 
             for(StudentDto sDto : all) {

@@ -1,4 +1,4 @@
-package edu.ijse.smart_school.util;
+package edu.ijse.smart_school.dao.util;
 
 import edu.ijse.smart_school.db.DBconnection;
 
@@ -24,14 +24,5 @@ public class CrudUtil {
 
             return (T) ((Boolean) isSaved);
         }
-    }
-    public static ResultSet executeAndReturnGeneratedKeys(String sql, Object... params) throws SQLException, ClassNotFoundException {
-        Connection connection = DBconnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        for (int i = 0; i < params.length; i++) {
-            pst.setObject(i + 1, params[i]);
-        }
-        pst.executeUpdate();
-        return pst.getGeneratedKeys();
     }
 }

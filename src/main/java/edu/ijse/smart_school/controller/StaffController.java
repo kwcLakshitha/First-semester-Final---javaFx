@@ -1,10 +1,13 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StaffBO;
+import edu.ijse.smart_school.bo.custom.impl.StaffBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.StaffDAO;
 import edu.ijse.smart_school.dto.StaffDto;
 import edu.ijse.smart_school.dto.tm.StaffTm;
-import edu.ijse.smart_school.dto.tm.TeacherTm;
-import edu.ijse.smart_school.model.StaffModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,7 +28,9 @@ import java.util.ResourceBundle;
 
 public class StaffController implements Initializable {
 
-    StaffModel staffModel = new StaffModel();
+    //StaffDAO staffModel = (StaffDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STAFF);
+
+    StaffBO staffBO = (StaffBO) BOFactory.getInstance().getBO(BOFactory.BOType.STAFF);
 
     @FXML
     private JFXButton homeBtn;
@@ -88,7 +93,7 @@ public class StaffController implements Initializable {
         posiCol.setCellValueFactory(new PropertyValueFactory<>("position"));
 
         try {
-            ArrayList<StaffDto> all = staffModel.getAll();
+            ArrayList<StaffDto> all = staffBO.getAll();
             ObservableList<StaffTm> staffTm = FXCollections.observableArrayList();
 
             for(StaffDto sDto : all) {

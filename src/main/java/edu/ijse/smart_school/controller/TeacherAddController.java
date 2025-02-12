@@ -2,15 +2,18 @@ package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.TeacherBO;
+import edu.ijse.smart_school.bo.custom.impl.TeacherBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
+import edu.ijse.smart_school.dao.custom.TeacherDAO;
 import edu.ijse.smart_school.dto.TeacherDto;
-import edu.ijse.smart_school.model.TeacherModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -116,9 +119,10 @@ public class TeacherAddController {
 
         TeacherDto teacherDto = new TeacherDto(id , name , address , nic , categary , hireDate , email , phone);
 
-        TeacherModel teacherModel = new TeacherModel();
+        //TeacherDAO teacherModel = (TeacherDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.TEACHER);
+        TeacherBO teacherBO = (TeacherBO) BOFactory.getInstance().getBO(BOFactory.BOType.TEACHER);
         try {
-            boolean save = teacherModel.save(teacherDto);
+            boolean save = teacherBO.save(teacherDto);
 
             if (save){
                 new Alert(Alert.AlertType.INFORMATION,"Successfully save").show();

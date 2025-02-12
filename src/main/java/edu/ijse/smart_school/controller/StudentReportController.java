@@ -1,9 +1,13 @@
 package edu.ijse.smart_school.controller;
 
 import com.jfoenix.controls.JFXButton;
+import edu.ijse.smart_school.bo.BOFactory;
+import edu.ijse.smart_school.bo.custom.StudentBO;
+import edu.ijse.smart_school.bo.custom.impl.StudentBOImpl;
+import edu.ijse.smart_school.dao.DAOFactory;
 import edu.ijse.smart_school.dto.StudentDto;
 import edu.ijse.smart_school.dto.tm.StudentTm;
-import edu.ijse.smart_school.model.StudentModel;
+import edu.ijse.smart_school.dao.custom.impl.StudentDAOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,7 +57,7 @@ public class StudentReportController implements Initializable {
         String repo= text.getText();
 
         try {
-            boolean isSaved = StudentModel.addReport(studenId,repo_id,repo);
+            boolean isSaved = StudentDAOImpl.addReport(studenId,repo_id,repo);
             if (isSaved){
                 new Alert(Alert.AlertType.INFORMATION, "Customer saved...!").show();
             } else {
@@ -74,14 +78,16 @@ public class StudentReportController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        StudentModel studentModel = new StudentModel();
+        //StudentDAOImpl studentModel = (StudentDAOImpl) DAOFactory.getInstance().getDAO(DAOFactory.DAOType.STUDENT);
+
+        StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
      //   cateCol.setCellValueFactory(new PropertyValueFactory<>("categary"));
 
         try {
-            ArrayList<StudentDto> all = studentModel.getAll();
+            ArrayList<StudentDto> all = studentBO.getAll();
             ObservableList<StudentTm> studentTm = FXCollections.observableArrayList();
 
             for(StudentDto sDto : all) {
