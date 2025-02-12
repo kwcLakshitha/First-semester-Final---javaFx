@@ -1,5 +1,7 @@
 package edu.ijse.smart_school.db;
 
+//DB Connection
+
 import java.sql.*;
 
 public class DBconnection {
